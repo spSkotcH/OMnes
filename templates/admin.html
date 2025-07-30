@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+</head>
+{% block body %}
+    <body>
+        <form action="/AddCom" method="post">
+            <input class="position_center borders" type="text" placeholder="Введите название команды"
+                   name="newname">
+            <button type="submit" class="position_center borders">Подтвердить</button>
+        </form>
+        <form  action="/SetGame" method="post">
+            <select class="setgame" name="namesetgm" onchange="this.form.submit();">
+                <option value="0">Выберите игру</option>
+                {% for gameid in range(countgames) %}
+                <option value="{{ gameid+1 }}">Игра №   {{ gameid+1 }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <div>
+            <form>
+                <table>
+                    <tr>
+                        <th>Название команды</th>
+                        <th>Место</th>
+                    </tr>
+                    {% for com in range(lenght) %}
+                    <tr>
+                        <th>{{res[0][com]}}</th>
+                        <th><input class="setres" type="text" placeholder="{{res[1][com]}}" name="newres"></th>
+                    </tr>
+                    {% endfor %}
+                </table>
+<!--                <button type="submit" class="setres">Подтвердить</button>-->
+            </form>
+        </div>
+    </body>
+{% endblock %}
+</html>
